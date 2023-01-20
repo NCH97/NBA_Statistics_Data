@@ -5,7 +5,7 @@ import { ColumnFilter } from '../../components/ColumnFilter'
 
 export const STANDING = [
     {
-        Header: '',
+        Header: 'Teams',
         accessor: 'Name',
         Filter: ColumnFilter,
         disableFilters: true,

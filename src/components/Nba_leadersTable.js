@@ -4,15 +4,27 @@ import { GlobalFilter} from './GlobalFilter'
 import MOCK_DATA from '../datas/stats/playerstats.json'
 import { COLUMNS } from '../datas/stats/playerstats'
 import './table.css'
+import axios from 'axios'
 
 export const Nba_leaders_table = () => {
 
+    const [leaderstats, setLeaderstats] = useState([])
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const result = await axios.get('http://localhost:8080/api/v1/playerseasonstats/');
+            setLeaderstats(result.data);
+            //console.log("standing>>>>",result.data);
+        };
+        fetchdata();
+        
+    }, []);
     const columns = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => MOCK_DATA, [])
+    //const data = useMemo(() => MOCK_DATA, [])
 
     const tableInstance = useTable({
         columns,
-        data,
+        data: leaderstats,
     },
     useFilters,
     useGlobalFilter,

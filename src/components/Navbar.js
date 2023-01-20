@@ -10,6 +10,12 @@ class Navbar extends Component {
     this.setState({clicked:
     !this.state.clicked})
   }
+
+  handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  }
+
   render(){
   return (
   <>
@@ -30,8 +36,9 @@ class Navbar extends Component {
                 <StyledLink to='teams'>Teams</StyledLink>
               </li>
               <li>
-              <StyledLink to='/stats'>Stats</StyledLink>
+                <StyledLink to='/leaders'>Season Leaders</StyledLink>
               </li>
+              
               <li>
                 <StyledLink to='/team/roster'>Roster</StyledLink>
               </li>
@@ -39,10 +46,10 @@ class Navbar extends Component {
                 <StyledLink to='/team/stats'>Team Stats</StyledLink>
               </li>
               <li>
-                <StyledLink to='/leaders'>Season Leaders</StyledLink>
+                <StyledLink to='/player'>Player</StyledLink>
               </li>
               <li>
-                <StyledLink to='/player'>Player</StyledLink>
+                <StyledLink onClick={this.handleLogout} to='/'>Logout</StyledLink>
               </li>
               
         </ul>

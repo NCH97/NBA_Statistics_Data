@@ -4,15 +4,32 @@ import { GlobalFilter} from './GlobalFilter'
 import MOCK_DATA from '../datas/standing/standing.json'
 import { STANDING } from '../datas/standing/standingtable'
 import './table.css'
+import axios from 'axios'
+
+const { Standing } = require('../server/src/models/standingModel');
+
 
 export const Nba_standing_table = () => {
 
+    const [standing, setStanding] = useState([])
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const result = await axios.get('http://localhost:8080/api/v1/standings/');
+            setStanding(result.data);
+            //console.log("standing>>>>",result.data);
+        };
+        fetchdata();
+        
+    }, []);
+
     const columns = useMemo(() => STANDING, [])
-    const data = useMemo(() => MOCK_DATA, [])
+    //const data = useMemo(() => MOCK_DATA, [])
+    //const data = useMemo(() => standing, [])
 
     const tableInstance = useTable({
         columns,
-        data,
+        data: standing,
     },
     useGlobalFilter,
     useFilters,

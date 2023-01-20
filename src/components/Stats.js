@@ -12,7 +12,7 @@ import TabsStats from './TabsStats'
 
 export const Stats = () => {
     return(
-        <>
+        <>   
             <TabsStats/>
         </>
     )

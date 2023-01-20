@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default function TeamNBA({ Name }) {
+export default function TeamNBA({ Name,WikipediaLogoUrl,Conference }) {
   return(
     <Row xs={1} md={2}>
     <Col xs>
         <section>
             <a href="#">
-                <p>IMG</p>
+                <img src={WikipediaLogoUrl} alt="team" width="40" height="40"></img>
             </a>
             <div>
                 <a href="#">
@@ -29,4 +29,6 @@ export default function TeamNBA({ Name }) {
 
 TeamNBA.propTypes = {
   Name: PropTypes.string.isRequired,
+  WikipediaLogoUrl : PropTypes.string.isRequired,
+  Conference : PropTypes.string.isRequired,
 }
